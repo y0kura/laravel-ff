@@ -10,9 +10,10 @@ class Enemy
     private $attackPoint=10;
 
     //コンストラクタ
-    public function __construct($name)
+    public function __construct($name, $attackPoint)
     {
         $this->name = $name;
+        $this->attackPoint = $attackPoint;
     }
 
     // メソッド
