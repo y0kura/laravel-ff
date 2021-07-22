@@ -6,6 +6,7 @@ require_once('./classes/Enemy.php');
 require_once('./classes/Brave.php');
 require_once('./classes/BlackMage.php');
 require_once('./classes/WhiteMage.php');
+require_once('./classes/Message.php');
 
 // インスタンス化
 $members = array();
@@ -20,19 +21,17 @@ $enemies[] = new Enemy("モルボル", 30);
 
 $turn = 1;
 $isFinishFlg = false;
+$messageObj = new Message();
+
 //どちらかのHPが0になるまで繰り返す
 while(!$isFinishFlg){
     echo "*** $turn ターン目 ***\n\n"; // ここを追加
 
-    //現在のHPを表示
-    foreach ($members as $member){
-        echo $member->getName().":".$member->getHitPoint()."/".$member::MAX_HITPOINT."\n";
-    }
-    echo "\n";
-    foreach ($enemies as $enemy){
-        echo $enemy->getName().":".$enemy->getHitPoint()."/".$enemy::MAX_HITPOINT."\n";
-    }
-    echo "\n";
+    //仲間の表示
+    $messageObj->displayStatusMessage($members);
+
+    //敵の表示
+    $messageObj->displayStatusMessage($enemies);
 
     //攻撃
     //味方
@@ -84,12 +83,10 @@ while(!$isFinishFlg){
 }
 
 echo "★★★ 戦闘終了 ★★★\n\n";
-// 現在のHPの表示
-foreach ($members as $member) {
-    echo $member->getName() . "　：　" . $member->getHitPoint() . "/" . $member::MAX_HITPOINT . "\n";
-}
-echo "\n";
-foreach ($enemies as $enemy) {
-    echo $enemy->getName() . "　：　" . $enemy->getHitPoint() . "/" . $enemy::MAX_HITPOINT . "\n";
-}
+
+//仲間の表示
+$messageObj->displayStatusMessage($members);
+
+//敵の表示
+$messageObj->displayStatusMessage($enemies);
 
