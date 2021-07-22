@@ -14,8 +14,16 @@ class WhiteMage extends Human
         parent::__construct($name, $this->hitPoint, $this->attackPoint);
     }
 
-    public function doAttackWhiteMage($enemy, $human)
+    public function doAttackWhiteMage($enemy, $humans)
     {
+        // チェック１：自身のHPが0かどうか
+        if ($this->hitPoint <= 0) {
+            return false;
+        }
+
+        $humanIndex = rand(0, count($humans) - 1); // 添字は0から始まるので、-1する
+        $human = $humans[$humanIndex];
+
         if(rand(1,2) === 1){
             echo "『" .$this->getName() . "』のスキルが発動した！\n";
             echo "『ケアル』！！\n";
