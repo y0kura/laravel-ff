@@ -1,6 +1,7 @@
 <?php
 // echo "処理のはじまりはじまり～！\n\n"; // ここをコメントアウト
 require_once('./lib/Loader.php');
+require_once('./lib/Utility.php');
 
 // オートロード
 $loader = new Loader();
@@ -22,21 +23,6 @@ $enemies[] = new Enemy("モルボル", 30);
 $turn = 1;
 $isFinishFlg = false;
 $messageObj = new Message();
-
-//終了条件の判定
-function isFinish($objects){
-    $deatuCnt = 0;
-    foreach ($objects as $object){
-        if($object->getHitPoint() > 0){
-            return false;
-        }
-        $deatuCnt++;
-    }
-    //仲間の数が死亡数（HPが0以下の数）と同じであればtrueを返す
-    if($deatuCnt === count($objects)){
-        return true;
-    }
-}
 
 //どちらかのHPが0になるまで繰り返す
 while(!$isFinishFlg){
