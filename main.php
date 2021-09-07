@@ -7,18 +7,19 @@ require_once('./lib/Utility.php');
 $loader = new Loader();
 // classesフォルダの中身をロード対象ディレクトリとして登録
 $loader->regDirectory(__DIR__ . '/classes');
+$loader->regDirectory(__DIR__ . '/classes/constants');
 $loader->register();
 
 // インスタンス化
 $members = array();
-$members[] = new Brave("ティーダ");
-$members[] = new BlackMage("ユウナ");
-$members[] = new WhiteMage("ルールー");
+$members[] = new Brave(CharacterName::TIIDA);
+$members[] = new WhiteMage(CharacterName::YUNA);
+$members[] = new BlackMage(CharacterName::RULU);
 
 $enemies = array();
-$enemies[] = new Enemy("ゴブリン", 20);
-$enemies[] = new Enemy("ボム",25);
-$enemies[] = new Enemy("モルボル", 30);
+$enemies[] = new Enemy(EnemyName::GOBLINS, 20);
+$enemies[] = new Enemy(EnemyName::BOMB, 25);
+$enemies[] = new Enemy(EnemyName::MORBOL, 30);
 
 $turn = 1;
 $isFinishFlg = false;
